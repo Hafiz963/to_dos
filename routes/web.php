@@ -19,6 +19,8 @@ Route::get('/', function () {
 
 Route::get('/users', [App\Http\Controllers\UserController::class, 'index'])->name('users')->middleware('can:view');
 Route::post('/users/delete', [App\Http\Controllers\UserController::class, 'delete'])->name('users.delete');
+Route::post('/users/update', [App\Http\Controllers\UserController::class, 'update'])->name('users.update');
+Route::get('/users/edit', [App\Http\Controllers\UserController::class, 'edit'])->name('users.edit');
 Route::get('/tasks', [App\Http\Controllers\ToDoController::class, 'index'])->name('tasks');
 Route::get('/tasks/create', [App\Http\Controllers\ToDoController::class, 'create'])->name('tasks.create');
 Route::post('/tasks/store', [App\Http\Controllers\ToDoController::class, 'store'])->name('tasks.store');

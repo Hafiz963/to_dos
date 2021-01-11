@@ -1,4 +1,5 @@
 @extends('layouts.panel')
+@section('title','Home')
 @section('body')
 
             <!-- Page title -->

@@ -24,12 +24,13 @@
 
 
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>            <script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
 
+<script>
     $('.save_button').click(function (){
         let task_name = $("#task_name").val();
         axios.post('{{ route('tasks.store') }}',{
-            task_name: task_name,
+            task_name : task_name,
         })
             .then(function (response) {
                 $('#todos_table').DataTable().ajax.reload();
@@ -40,4 +41,4 @@
                 alert(error);
             });
     });
-
+</script>

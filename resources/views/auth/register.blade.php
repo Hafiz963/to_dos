@@ -1,6 +1,6 @@
     @extends('layouts.auth')
 @section('body')
-    <form class="card card-md" action="{{ route('register') }}" method="post">
+    <form class="card card-md" action="{{ route('register') }}" method="post" enctype="multipart/form-data">
         @csrf
         <div class="card-body">
             <h2 class="card-title text-center mb-4">Create new account</h2>
@@ -23,6 +23,18 @@
                 </span>
                 @enderror
             </div>
+
+
+            <div class="mb-3">
+                <label class="form-label">Image</label>
+                <input id="profile_image" type="file" class="form-control @error('profile_image') is-invalid @enderror" name="profile_image" required autocomplete="profile_image" >
+                @error('profile_image')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+                @enderror
+            </div>
+
 
 
             <div class="mb-3">

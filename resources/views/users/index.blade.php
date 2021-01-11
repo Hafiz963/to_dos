@@ -1,12 +1,14 @@
 @extends('layouts.panel')
-
+@section('title','All Users')
 @section('css')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
 @endsection
 
 @section('body')
-    <div class="card">
+    <div class="card" style="padding: 20px">
         {!! $dataTable->table() !!}
+    </div>
+     <div class="modal_data">
     </div>
 @endsection
 
@@ -44,6 +46,24 @@
                 }
             }
         });
+
+    });
+
+    $(document).on('click', '.edit_button', function (){
+        let id = $(this).attr('data-id');
+                        axios.get('{{ route('users.edit') }}', {
+                            params:{
+                                id: id,
+                            }
+                        })
+                            .then(function (response) {
+                                $(".modal_data").html(response.data);
+                                $('.edit_modal_data').modal('show');
+                            })
+                            .catch(function (error) {
+                                alert(error);
+                            });
+
 
     });
 </script>

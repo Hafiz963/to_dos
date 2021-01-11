@@ -22,9 +22,13 @@ class UsersDataTable extends DataTable
         return datatables()
             ->eloquent($query)
             ->addColumn('action', function ($user){
-                return view('users.actions',["user"=>$user])->render();
+                return view('users.actions',["user"=>$user]);
 
-            });
+            })
+            ->editColumn('profile_image', function ($user){
+                return '<span class="avatar avatar-md" style="background-image: url('.$user->profile_image_url.')"></span>';
+            })
+            ->rawColumns(['profile_image',['action']]);
     }
 
     /**
@@ -50,7 +54,6 @@ class UsersDataTable extends DataTable
                     ->columns($this->getColumns())
                     ->minifiedAjax()
                     ->orderBy(0);
-
     }
 
     /**
@@ -63,7 +66,10 @@ class UsersDataTable extends DataTable
         return [
             Column::make('id'),
             Column::make('name'),
-
+            Column::make('profile_image')->title('Picture'),
+             Column::computed('action')
+                ->exportable(false)
+                ->printable(false)
         ];
     }
 
